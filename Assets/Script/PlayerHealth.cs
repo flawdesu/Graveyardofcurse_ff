@@ -1,0 +1,55 @@
+using UnityEngine;
+using UnityEngine.UI;
+
+public class PlayerHealth : MonoBehaviour
+{
+    public int maxHealth = 6;
+    public int currentHealth;
+    public Image[] heartImages;
+    public Sprite fullHeart;
+    public Sprite emptyHeart;
+
+    void Start()
+    {
+        currentHealth = maxHealth;
+        UpdateHealthUI();
+    }
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            TakeDamage(1);
+        }
+    }
+
+    public void TakeDamage(int damage)
+    {
+        currentHealth -= damage;
+        if (currentHealth < 0) currentHealth = 0;
+
+        UpdateHealthUI();
+
+        if (currentHealth <= 0)
+        {
+            Die();
+        }
+    }
+
+    void UpdateHealthUI()
+    {
+        for (int i = 0; i < heartImages.Length; i++)
+        {
+            if (i < currentHealth)
+                heartImages[i].sprite = fullHeart;
+            else
+                heartImages[i].sprite = emptyHeart;
+        }
+    }
+
+    void Die()
+    {
+        // กรณีตาย (ยังไม่มีผลกับ Player จริง)
+        Debug.Log("Player Dead");
+    }
+}

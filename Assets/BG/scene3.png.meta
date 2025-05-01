@@ -1,16 +1,10 @@
 fileFormatVersion: 2
-guid: 079a064395c6a964aa03089d4d8bb817
+guid: 3920e77f8e3e70748bcc9545b857a0fa
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -3204620187245591253
-    second: gabage_0
-  - first:
-      213: -4465432452602775748
-    second: gabage_1
-  - first:
-      213: 354350748680710771
-    second: gabage_2
+      213: 3129370254906604291
+    second: scene3_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -106,67 +100,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: gabage_0
+      name: scene3_0
       rect:
         serializedVersion: 2
-        x: 55
-        y: 232
-        width: 6
-        height: 15
+        x: 0
+        y: 0
+        width: 7000
+        height: 1080
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: b254e232be6e683d0800000000000000
-      internalID: -3204620187245591253
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: gabage_1
-      rect:
-        serializedVersion: 2
-        x: 89
-        y: 120
-        width: 656
-        height: 481
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: c373c1ed7d89702c0800000000000000
-      internalID: -4465432452602775748
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: gabage_2
-      rect:
-        serializedVersion: 2
-        x: 49
-        y: 160
-        width: 26
-        height: 71
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 37ae105e028eae400800000000000000
-      internalID: 354350748680710771
+      spriteID: 30bb16eaaa1cd6b20800000000000000
+      internalID: 3129370254906604291
       vertices: []
       indices: 
       edges: []
@@ -175,7 +125,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 6105679b4d65d1645a8c82eca46f51ab
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -184,10 +134,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      gabage_0: -3204620187245591253
-      gabage_1: -4465432452602775748
-      gabage_2: 354350748680710771
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
