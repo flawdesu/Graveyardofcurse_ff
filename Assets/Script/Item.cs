@@ -16,7 +16,7 @@ public class Item : MonoBehaviour
     private string itemDescription;
 
     private InventoryManager inventoryManager;
-    private bool isPlayerInRange = false; // ตรวจว่าผู้เล่นอยู่ในระยะหรือยัง
+    private bool isPlayerInRange = false;
 
     void Start()
     {
@@ -25,17 +25,30 @@ public class Item : MonoBehaviour
 
     void Update()
     {
-        // ถ้า Player อยู่ในระยะ และกดปุ่ม E
         if (isPlayerInRange && Input.GetKeyDown(KeyCode.E))
         {
-            int leftOverItems = inventoryManager.AddItem(itemName, quantity, sprite, itemDescription); // ส่งครบ 4 พารามิเตอร์
+            int leftOverItems = inventoryManager.AddItem(itemName, quantity, sprite, itemDescription);
+
+            // ✅ เรียก Analytics แบบแยกตามชื่อ item
+            if (leftOverItems < quantity && AnalyticsManager.Instance != null)
+            {
+                if (itemName == "PainKiller")
+                {
+                    AnalyticsManager.Instance.LogPainKillerCollected();
+                }
+                else if (itemName == "Note")
+                {
+                    AnalyticsManager.Instance.LogNoteCollected();
+                }
+            }
+
             if (leftOverItems <= 0)
             {
-                Destroy(gameObject); // ลบไอเท็มออกจากเกมหลังจากเพิ่มใน Inventory
+                Destroy(gameObject);
             }
             else
             {
-                quantity = leftOverItems; // ปรับจำนวนที่เหลือ
+                quantity = leftOverItems;
             }
         }
     }
@@ -44,7 +57,7 @@ public class Item : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            isPlayerInRange = true; // ตั้งค่าว่าผู้เล่นอยู่ในระยะ
+            isPlayerInRange = true;
         }
     }
 
@@ -52,7 +65,7 @@ public class Item : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            isPlayerInRange = false; // ออกจากระยะ
+            isPlayerInRange = false;
         }
     }
 }

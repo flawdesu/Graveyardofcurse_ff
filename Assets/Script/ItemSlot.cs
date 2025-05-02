@@ -12,26 +12,24 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler
     public bool isFull;
     public string itemDescription;
 
+    [SerializeField] private Sprite emptySprite; // ✅ เพิ่มตัวแปรสำหรับช่องว่าง
+
     // จำนวนสูงสุดที่สามารถเก็บได้ในแต่ละช่อง
     [SerializeField]
-    private int maxStack = 99; // ตั้งค่าจำนวนสูงสุด (ปรับค่าตามที่ต้องการ)
+    private int maxStack = 99;
 
-    public int MaxStack => maxStack; // ค่าคงที่ที่สามารถเข้าถึงได้จากภายนอก
+    public int MaxStack => maxStack;
 
     // ITEM SLOT //
-    [SerializeField]
-    private TMP_Text quantityText;
+    [SerializeField] private TMP_Text quantityText;
+    [SerializeField] private Image itemImage;
 
-    [SerializeField]
-    private Image itemImage;
-
-    // ITEM DES//
+    // ITEM DES //
     public Image itemDescriptionImage;
     public TMP_Text itemDescriptionNameText;
     public TMP_Text itemDescriptionText;
 
-    // เปลี่ยนเป็น public เพื่อให้สามารถเข้าถึงได้จากภายนอก
-    public GameObject selectedShader;  // เปลี่ยนเป็น public
+    public GameObject selectedShader;
     public bool thisItemSelected;
 
     private InventoryManager inventoryManager;
@@ -70,21 +68,40 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler
     {
         if (thisItemSelected)
         {
-            inventoryManager.UseItem(itemName);  // ใช้ไอเท็มที่เลือก
-        }
+            inventoryManager.UseItem(itemName);
+            this.quantity -= 1;
+            quantityText.text = this.quantity.ToString();
 
-        // ยกเลิกการเลือกไอเท็มก่อนหน้า
-        inventoryManager.DeselectAllSlots();
-        selectedShader.SetActive(true);  // แสดงว่ากำลังเลือกไอเท็มนี้
-        thisItemSelected = true;  // ตั้งสถานะการเลือกไอเท็ม
-        itemDescriptionNameText.text = itemName;  // อัพเดทชื่อไอเท็มในคำอธิบาย
-        itemDescriptionText.text = itemDescription;  // อัพเดทคำอธิบายไอเท็ม
-        itemDescriptionImage.sprite = itemSprite;  // อัพเดทภาพไอเท็ม
+            if (this.quantity <= 0)
+                EmptySlot(); // ✅ แก้ชื่อ method ให้ถูก
+        }
+        else
+        {
+            inventoryManager.DeselectAllSlots();
+            selectedShader.SetActive(true);
+            thisItemSelected = true;
+
+            itemDescriptionNameText.text = itemName;
+            itemDescriptionText.text = itemDescription;
+            itemDescriptionImage.sprite = itemSprite;
+
+            if (itemDescriptionImage.sprite == null)
+                itemDescriptionImage.sprite = emptySprite; // ✅ แก้ชื่อให้ตรง
+        }
     }
 
+    private void EmptySlot()
+    {
+        quantityText.enabled = false;
+        itemImage.sprite = emptySprite;
+
+        itemDescriptionNameText.text = "";
+        itemDescriptionText.text = "";
+        itemDescriptionImage.sprite = emptySprite;
+    }
 
     public void OnRightClick()
     {
-        // เพิ่มโค้ดลบไอเท็มหรือการกระทำอื่นๆ ที่ต้องการ
+        // เพิ่มการลบหรือโค้ดอื่น ๆ ตามที่ต้องการ
     }
 }

@@ -5,8 +5,22 @@ public class InventoryManager : MonoBehaviour
     public GameObject inventoryMenu;
     private bool menuActivated = false;
     public ItemSlot[] itemSlot;
+    public static InventoryManager Instance;
 
     public ItemSO[] itemSOs;
+
+    void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject); // ทำให้ไม่หายตอนเปลี่ยน Scene
+        }
+        else
+        {
+            Destroy(gameObject); // ป้องกันซ้ำ
+        }
+    }
 
     void Update()
     {
