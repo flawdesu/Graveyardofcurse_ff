@@ -17,6 +17,7 @@ public class PlayerHealth : MonoBehaviour
 
     void Update()
     {
+        // สำหรับการทดสอบ
         if (Input.GetKeyDown(KeyCode.E))
         {
             TakeDamage(1);
@@ -27,6 +28,25 @@ public class PlayerHealth : MonoBehaviour
     {
         currentHealth -= damage;
         if (currentHealth < 0) currentHealth = 0;
+
+        UpdateHealthUI();
+
+        if (currentHealth <= 0)
+        {
+            Die();
+        }
+    }
+
+    public void ChangeHealth(int amount)
+    {
+        // เพิ่มหรือลด Health ตามจำนวนที่ได้รับจากไอเท็ม
+        currentHealth += amount;
+
+        // ป้องกันไม่ให้ Health เกิน maxHealth หรือ น้อยกว่า 0
+        if (currentHealth > maxHealth)
+            currentHealth = maxHealth;
+        else if (currentHealth < 0)
+            currentHealth = 0;
 
         UpdateHealthUI();
 
@@ -49,7 +69,6 @@ public class PlayerHealth : MonoBehaviour
 
     void Die()
     {
-        // กรณีตาย (ยังไม่มีผลกับ Player จริง)
         Debug.Log("Player Dead");
     }
 }
